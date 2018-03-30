@@ -1,12 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from "./App";
-import { BrowserRouter as Router } from "react-router-dom";
-import './assets/styles/index.css';
-import registerServiceWorker from './registerServiceWorker';
+export { default as i18n } from './locale';
 
-ReactDOM.render(
-<Router>
-  <App/>
-</Router>, document.getElementById('root'));
-registerServiceWorker();
+export {default as Input} from './input'

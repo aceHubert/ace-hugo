@@ -1,0 +1,12 @@
+.el-input {
+    width: 180px;
+}
+
+.el-input-color {
+    .el-input {
+        display: block;
+        &+.el-input {
+            margin-top: 20px;
+        }
+    }
+}
