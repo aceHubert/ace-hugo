@@ -2,9 +2,25 @@
     width: 180px;
 }
 
-.el-input-color {
+.el-input-group {
+    width: 100%;
+}
+
+.el-textarea {
+    width: 400px;
+}
+
+.demo-input-block {
     .el-input {
         display: block;
+        &+.el-input {
+            margin-top: 20px;
+        }
+    }
+}
+
+.demo-input-group-block{
+    .el-input {
         &+.el-input {
             margin-top: 20px;
         }

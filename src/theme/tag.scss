@@ -1,0 +1,70 @@
+.el-tag{
+  padding:0 5px;
+  height: 20px;
+  height: 1.25rem;
+  line-height: 20px;
+  line-height: 1.25rem;
+  color:$gray;
+  background-color: $gray-lighter;
+  font-size: 12px;
+  font-size: .75rem;
+  display: inline-block;
+  box-sizing: border-box;
+  &--primary{
+    color:#FFF;
+    background-color: $color-primary;
+  }
+  &--succes{
+    color:#FFF;
+    background-color: $color-succes;
+  }
+  &--info{
+    color:#FFF;
+    background-color: $color-info;
+  }
+  &--warning{
+    color:#FFF;
+    background-color: $color-warning;
+  }
+  &--danger{
+    color:#FFF;
+    background-color: $color-danger;
+  }
+
+  &--color{
+    color:#FFF;
+  }
+
+  &__close{
+    font-size: 13.3333px;
+    font-size: .832rem;
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    left: 1px;
+    cursor: pointer;
+
+    &:hover{
+      color: $gray-darker;
+    }
+  }
+
+  &--primary &__close:hover{
+    color: darken($color-primary,15%);
+  }
+
+  &--succes &__close:hover{
+    color: darken($color-succes,15%);
+  }
+  &--info &__close:hover{
+    color: darken($color-info,15%);
+  }
+  &--warning &__close:hover{
+    color: darken($color-warning,15%);
+  }
+  &--danger &__close:hover{
+    color: darken($color-danger,15%);
+  }
+}

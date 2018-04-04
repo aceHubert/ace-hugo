@@ -4,7 +4,8 @@ module.exports = {
   'page': {
     'quick-start':'快速上手',
     'input': 'Input 输入框',
-
+    'tag':'Tag 标签',
+    'button':'Button 按钮'
   },
   'misc': {
     'guide': '指南',

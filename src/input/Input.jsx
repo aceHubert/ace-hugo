@@ -1,27 +1,22 @@
-import React from 'react'
+import React from "react";
 import {Component, PropTypes} from '../../libs';
+import calcTextareaHeight from './calcTextareaHeight'
 
-export default class Input extends Component {
-
-  static defaultProps = {
-    type: 'text',
-    autosize: false,
-    rows: 2,
-    autoComplete: 'off'
-  }
+export default class Input extends Component { 
 
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value,
-      focus: false,
-      blur: false
+      textareaStyle: { resize: props.resize },
+      focus: false
     }
   }
 
-  /* Instance Methods> */
+  componentDidMount() {
+    this.resizeTextarea();
+  }
 
-  fixControlledValue =()=> {
+  fixControlledValue =(value)=> {
     if(typeof value === 'undefined' || value === null) {
       return '';
     }
@@ -32,21 +27,43 @@ export default class Input extends Component {
     const {onChange} = this.props;
     if (onChange) 
       onChange(e.target.value);
-    
+    this.resizeTextarea();
   }
 
   handleFocus=()=> {
     const {onFocus} = this.props;
-    this.setState({focus: true, blur: false});
+    this.setState({focus: true});
     if (onFocus) 
       onFocus(e)
   }
 
   handleBlur=(e)=> {
     const {onBlur} = this.props;
-    this.setState({focus: false, blur: true});
+    this.setState({focus: false});
     if (onBlur) 
       onBlur(e)
+  }
+
+  handleIconClick=()=> {
+    const {onIconClick} = this.props;
+    if (onIconClick) {
+      onIconClick()
+    }
+  }
+
+  resizeTextarea=()=> {
+    const { autosize, type } = this.props;
+
+    if (!autosize || type !== 'textarea') {
+      return;
+    }
+
+    const minRows = autosize.minRows;
+    const maxRows = autosize.maxRows;
+    const textareaCalcStyle = calcTextareaHeight(this.refs.textarea, minRows, maxRows);
+    this.setState({
+      textareaStyle: Object.assign({}, this.state.textareaStyle, textareaCalcStyle)
+    });
   }
 
   render() {
@@ -56,6 +73,7 @@ export default class Input extends Component {
       prepend,
       append,
       icon,
+      iconPre,
       autoComplete,
       validating,
       rows,
@@ -73,9 +91,8 @@ export default class Input extends Component {
     const classname = this.classNames(rootclass
       , colorType && `${rootclass}--${colorType}`
       , this.state.focus && `${rootclass}--focus`
-      , this.state.blur && `${rootclass}--blur`
       , this.props.disabled && `${rootclass}--disabled`
-      , (prepend || append) && `${rootclass}-group`);
+      , (prepend || append) && `${rootclass}-group`); 
 
       delete otherProps.resize;
       delete otherProps.style;
@@ -84,21 +101,23 @@ export default class Input extends Component {
 
     if(type == 'textarea'){
       return (
-        <div style={this.style()} className={classname}>
+        <div style={this.style()} className={this.className(classname)}>
           <textarea { ...otherProps }
             ref="textarea"
             className="el-textarea__inner"
             style={this.state.textareaStyle}
             rows={rows}
-            onChange={this.handleChange.bind(this)}
-            onFocus={this.handleFocus.bind(this)}
-            onBlur={this.handleBlur.bind(this)}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
           ></textarea>
         </div>
       )
     }else{
       return (
-        <div className={classname}>
+        <div style={this.style()} className={this.className(classname)}>
+          { prepend && <div className="el-input-group__prepend">{prepend}</div> }
+          { typeof icon === 'string' ? <i className={this.classNames('el-input__icon',iconPre&&'el-input__icon--pre',`el-icon-${icon}`)} onClick={this.handleIconClick.bind(this)}>{prepend}</i> : icon }
           <input {...otherProps}
             ref="input"
             type={type}
@@ -108,6 +127,7 @@ export default class Input extends Component {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             />
+          { append && <div className="el-input-group__append">{append}</div> }  
         </div>
       )
     }
@@ -117,6 +137,8 @@ export default class Input extends Component {
 Input.propTypes = {
   // base
   type: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  iconPre:PropTypes.bool,
   disabled: PropTypes.bool,
   name: PropTypes.string,
   placeholder: PropTypes.string,
@@ -141,5 +163,14 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  
+  onIconClick: PropTypes.func
+}
+
+
+Input.defaultProps = {
+  type: 'text',
+  autosize: false,
+  rows: 2,
+  autoComplete: 'off',
+  iconPre:false
 }

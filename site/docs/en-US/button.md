@@ -7,7 +7,7 @@
 ::: demo
 ```js
 render() {
-  return <Input placeholder="请输入内容"/>
+  return <Input placeholder="请输入内容" />
 }
 ```
 :::
@@ -18,19 +18,18 @@ render() {
 ::: demo 通过 `disabled` 属性指定是否禁用 input 组件
 ```js
 render() {
-  return <Input disabled placeholder="请输入内容"/>
+  return <Input disabled placeholder="请输入内容" />
 }
 ```
 :::
 
 ### 颜色
-使用不同颜色来表示输入状态
 
 ::: demo 通过 `colorType` 属性指定边框颜色
 ```js
 render() {
   return (
-  <div className="demo-input-block">
+  <div className="el-input-block">
     <Input colorType="primary" placeholder="请输入内容" />
     <Input colorType="succes" placeholder="请输入内容" />
     <Input colorType="info" placeholder="请输入内容" />
@@ -43,16 +42,15 @@ render() {
 :::
 
 ### 带Icon输入框
-通过图标显示输入框的含义
 
-::: demo 通过`icon`设置显示图标，及`onIconClick`钩子添加图标点击事件
+::: demo
 ```js
 handleIconClick(e){
 
 }
 
 render() {
-  return <div className="demo-input-block">
+  return <div className="el-input-block">
     <Input icon="time" 
             placeholder="请选择时间" 
             onIconClick={this.handleIconClick.bind(this)} />
@@ -63,12 +61,13 @@ render() {
 :::
 
 ### 复合型输入框
-通过前置或后置内置提示并减少用户的固定输入
 
-::: demo 通过`prepend`和`append`添加前置或后置内容
+::: demo
 ```js
+
+
 render() {
-  return <div className="demo-input-group-block">
+  return <div className="el-input-group-block">
     <Input placeholder="请输入内容" prepend="Http://"/>
     <Input placeholder="请输入内容" append=".com"/>
   </div>              

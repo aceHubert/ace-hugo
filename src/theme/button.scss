@@ -1,0 +1,113 @@
+.el-button {
+    padding: 8px 10px;
+    padding: .5rem .625rem;
+    color: $gray;
+    background-color: $gray-lighter;
+    background-image: none;
+    font-size: 14px;
+    line-height: 1.17;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($gray-lighter, 10%);
+    }
+    &--text {
+        color: $color-primary;
+        background-color: transparent;
+        &:hover {
+            color: darken( $color-primary, 10%);
+            background-color: transparent;
+        }
+    }
+    &--primary {
+        color: #FFF;
+        background-color: $color-primary;
+        &:hover {
+            background-color: darken( $color-primary, 5%);
+        }
+    }
+    &--succes {
+        color: #FFF;
+        background-color: $color-succes;
+        &:hover {
+            background-color: darken( $color-succes, 5%);
+        }
+    }
+    &--info {
+        color: #FFF;
+        background-color: $color-info;
+        &:hover {
+            background-color: darken( $color-info, 10%);
+        }
+    }
+    &--warning {
+        color: #FFF;
+        background-color: $color-warning;
+        &:hover {
+            background-color: darken( $color-warning, 5%);
+        }
+    }
+    &--danger {
+        color: #FFF;
+        background-color: $color-danger;
+        &:hover {
+            background-color: darken( $color-danger, 10%);
+        }
+    }
+    &--large{        
+        padding: 9.504px 12px;
+        padding: .594rem .75rem;
+        font-size: 16px;
+        font-size: 1.125rem;
+    }
+
+    &--small{
+        padding: 5.504px 0px;
+        padding: .344rem .5rem;
+        font-size: 12px;
+        font-size: 0.857rem;
+        line-height: .85;
+    }
+
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:focus {
+        color: $gray-light;
+        background-color: $gray-lighter;
+        opacity: .8;
+        cursor: not-allowed;
+    }
+    &.is-loading {
+        position: relative;
+        pointer-events: none;
+
+        &:before{
+            pointer-events: none;
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: inherit;
+            background-color: rgba(255,255,255,.45);
+        }
+    }
+    &--text.is-disabled {
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+    &__icon+span {
+        margin-left: 3px;
+    }
+    &__icon--pos {
+        float: right;
+        &+span{
+            margin-left: 0;
+            margin-right: 3px;
+        }
+    }
+}

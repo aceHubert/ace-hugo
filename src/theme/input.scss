@@ -1,77 +1,192 @@
 .el-input,
 .el-textarea {
+    width: 100%;
+    display: inline-block;
     position: relative;
-    font-size: $font-size-base;
+    font-size: 14px;
 }
 
 .el-input {
-    width: 100%;
-    display: inline-block;
-    border: 0;
-    border-bottom: 1px solid #CCC;
-    &--primary {
+    &--primary &__inner {
         border-color: $color-primary;
-        &:after {
-            border-color: darken($color-primary, 10%) !important;
-        }
     }
-    &--succes {
+    &--primary:before,
+    &--primary:after {
+        border-color: darken($color-primary, 5%) !important;
+    }
+    &--succes &__inner {
         border-color: $color-succes;
-        &:after {
-            border-color: darken($color-succes, 10%) !important;
-        }
     }
-    &--info {
+    &--succes:before,
+    &--succes:after {
+        border-color: darken($color-succes, 5%) !important;
+    }
+    &--info &__inner {
         border-color: $color-info;
-        &:after {
-            border-color: darken($color-info, 10%) !important;
-        }
     }
-    &--warning {
+    &--info:before,
+    &--info:after {
+        border-color: darken($color-info, 5%) !important;
+    }
+    &--warning &__inner {
         border-color: $color-warning;
-        &:after {
-            border-color: darken($color-warning, 10%) !important;
-        }
     }
-    &--danger {
+    &--warning:before,
+    &--warning:after {
+        border-color: darken($color-warning, 5%) !important;
+    }
+    &--danger &__inner {
         border-color: $color-danger;
-        &:after {
-            border-color: darken($color-danger, 10%) !important;
-        }
     }
+    &--danger:before,
+    &--danger:after {
+        border-color: darken($color-danger, 5%) !important;
+    }
+    &:before,
     &:after {
         content: '';
-        height: 1px;
         width: 0;
-        border-bottom: 1px solid $color-primary;
+        height: 0;
+        box-sizing: border-box;
         position: absolute;
-        bottom: -1px;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: .2;
+        opacity: 0;
+    }
+    &:before {
+        border-top: 2px solid $color-primary;
+        border-right: 2px solid $color-primary;
+        left: 0;
+        top: 0;
+    }
+    &:after {
+        border-bottom: 2px solid $color-primary;
+        border-left: 2px solid $color-primary;
+        right: 0;
+        bottom: 0;
+    }
+    &--focus:before {
+        animation: el-input__border-animate .2s forwards;
     }
     &--focus:after {
-        width: 100%;
-        opacity: 1;
-        transition: width .3s, opacity .3s;
-    }
-    &--blur:after {
-        width: 0;
-        opacity: .2;
-        transition: width .3s, opacity .3s;
+        animation: el-input__border-animate .2s forwards;
+        animation-delay: .2s;
     }
     &__inner {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         padding: 3px 10px;
         width: 100%;
-        height: 31px;
-        border: none;
+        height: 32px;
+        height:2rem;
         background-color: #fff;
+        background-image: none;
+        border: 1px solid #CCC;
         box-sizing: border-box;
         display: inline-block;
         outline: 0;
     }
     &--disabled &__inner {
+        color:$gray-light;
         background-color: $gray-lighter;
+        opacity: .8;
         cursor: not-allowed;
+    }
+    &__icon {
+        width: 35px;
+        width:2.188rem;
+        height: 100%;
+        color: $gray-light;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        &--pre {
+            left: 0;
+            right: auto;
+        }
+        &:after {
+            content: '';
+            height: 100%;
+            width: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    &__icon+&__inner {
+        padding-right: 35px;
+        padding-right: 2.188rem;
+    }
+    &__icon--pre+&__inner {
+        padding-left: 35px;
+        padding-left: 2.188rem;
+        padding-right: 7px;
+    }
+    &-group {
+        line-height: normal;
+        display: inline-table;
+        width: 100%;
+        border-collapse: separate;
+        &__prepend,
+        &__append {
+            color: $gray-light;
+            background-color: $gray-lighter;
+            vertical-align: middle;
+            display: table-cell;
+            position: relative;
+            border: 1px solid #CCC;
+            padding: 0 10px;
+            width: 1px;
+            white-space: nowrap;
+        }
+        &__prepend {
+            border-right: 0;
+        }
+        &__append {
+            border-left: 0;
+        }
+    }
+    &-group &__inner {
+        vertical-align: middle;
+        display: table-cell;
+    }
+}
+
+.el-textarea {
+    &__inner {
+        padding: 3px 10px;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #CCC;
+        line-height: 1.5;
+        display: block;
+        box-sizing: border-box;
+        outline: 0;
+    }
+    &--focus:before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        border: 2px solid $color-primary;
+        box-sizing: border-box;
+        position: absolute;
+        transition: border .3s ease-out;
+    }
+}
+
+@keyframes el-input__border-animate {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    75% {
+        width: 100%;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
     }
 }

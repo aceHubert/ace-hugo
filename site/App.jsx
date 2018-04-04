@@ -28,7 +28,7 @@ export default class App extends React.Component {
   componentDidMount() {
     this.setPage(() => {
       if (!this.state.locale) {
-        this.setLocale(localStorage.getItem('ELEMENT_LANGUAGE') || 'zh-CN');
+        this.setLocale(localStorage.getItem('ACE_LANGUAGE') || 'zh-CN');
       }
     });
   }
@@ -66,7 +66,7 @@ export default class App extends React.Component {
     if (routes) {
       if (locales.hasOwnProperty(routes[1])) {
         this.setState({ locale: routes[1] }, () => {
-          localStorage.setItem('ELEMENT_LANGUAGE', this.state.locale);
+          localStorage.setItem('ACE_LANGUAGE', this.state.locale);
         });
       }
 
@@ -169,7 +169,7 @@ export default class App extends React.Component {
             { this.getComponent(this.state.page) }
             <ScrollToTop showUnder={210}>
               <div className="page-component-up">
-                <i className="el-icon-caret-top"></i>
+                <i className="el-icon-top"></i>
               </div>
             </ScrollToTop>
           </div>

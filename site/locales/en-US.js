@@ -4,7 +4,8 @@ module.exports = {
   'page': {
     'quick-start':'Quick Start',
     'input': 'Input',
-
+    'tag':'Tag',
+    'button':'Button'
   },
   'misc': {
     'guide': 'Guide',
