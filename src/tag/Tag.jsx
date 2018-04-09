@@ -1,17 +1,26 @@
+/* @flow */
+
 import React from "react";
-import { Component, PropTypes, Transition, View } from '../../libs';
+import { Component, Transition, View } from '../../libs';
 
-export default class Tag extends Component {
+type Props ={  
+  closable: boolean,
+  type: string,
+  color: string,
+  onClose: Function
+};
 
-  constructor(props){
-    super(props)
+type State ={
+  visible: boolean
+};
 
-    this.state={
-      visible:true
-    }
+export default class Tag extends Component<Props,State> {
+
+  state={
+    visible:true
   }
 
-  handleClose =()=>{
+  handleClose =(): void=>{
     this.setState({
       visible: false
     }, () => {
@@ -22,11 +31,11 @@ export default class Tag extends Component {
   }
 
   render(){
-    const {closable,type,color,closeTransition,} = this.props;
+    const {closable,type,color} = this.props;
 
     return (
       <Transition name="el-zoom-in">
-        <View key={this.state.visible} show={this.state.visible}>
+        <View show={this.state.visible}>
           <span
             style={this.style({
               backgroundColor:color
@@ -39,11 +48,4 @@ export default class Tag extends Component {
       </Transition>
     )
   }
-}
-
-Tag.propTypes ={
-  closable: PropTypes.bool,
-  type: PropTypes.string,
-  color: PropTypes.string,
-  onClose: PropTypes.func
 }

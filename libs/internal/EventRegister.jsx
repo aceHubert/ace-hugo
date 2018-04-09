@@ -1,5 +1,7 @@
-import PropTypes from 'prop-types';
+/* @flow */
+
 import { Component } from 'react';
+import type { Node } from 'react';
 import { require_condition } from '../utils';
 
 let windowKey = Symbol.for("er_register_map")
@@ -7,13 +9,13 @@ const registerMap = window[windowKey] = window[windowKey] || {
   ids: {},
 }
 
-const not_null = (t) => (t != null)
+const not_null = (t: any) => (t != null)
 
-const hasRegistered = ({ id }) => {
+const hasRegistered = ({id}: {id: string}) => {
   return not_null(registerMap.ids[id])
 }
 
-const cleanRegister = (props) => {
+const cleanRegister = (props: any) => {
   const { target, eventName, func, isUseCapture, id } = props
   if (hasRegistered(props)) {
     target.removeEventListener(eventName, func, isUseCapture);
@@ -21,7 +23,7 @@ const cleanRegister = (props) => {
   }
 }
 
-const doRegister = (props) => {
+const doRegister = (props: any) => {
   let { id, eventName, func, isUseCapture } = props
   registerMap.ids[id] = id
   document.addEventListener(eventName, func, isUseCapture)
@@ -30,9 +32,19 @@ const doRegister = (props) => {
 /**
  * register events that hooked up react lifecycle
  */
-export default class EventRegister extends Component {
+type Props={
+  id: string,
+  target: Object,
+  eventName: string,
+  func: Function,
+  isUseCapture: boolean
+};
 
-  componentDidMount() {
+export default class EventRegister extends Component<Props> {
+
+  cached: Object = {};
+  
+  componentDidMount(): void {
     let { eventName, id } = this.props
     eventName = eventName.toLowerCase()
     eventName = /^on/.test(eventName) ? eventName.substring(2) : eventName
@@ -44,20 +56,11 @@ export default class EventRegister extends Component {
     doRegister(this.cached)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     cleanRegister(this.cached)
   }
 
-  render() {
+  render(): Node {
     return null
   }
 }
-
-
-EventRegister.propTypes = {
-  id: PropTypes.string.isRequired,
-  target: PropTypes.object.isRequired,
-  eventName: PropTypes.string.isRequired,
-  func: PropTypes.func.isRequired,
-  isUseCapture: PropTypes.bool
-};

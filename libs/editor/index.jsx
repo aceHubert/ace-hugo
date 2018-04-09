@@ -1,5 +1,7 @@
+/* @flow */
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import type { Node } from 'react'
 import CodeMirror from 'codemirror'
 
 import 'codemirror/mode/jsx/jsx'
@@ -9,8 +11,18 @@ import 'codemirror/addon/comment/comment'
 import 'codemirror/lib/codemirror.css'
 import './style.scss'
 
-export default class Editor extends Component {
-  componentDidMount() {
+type Props = {
+  onChange: Function,
+  value: string
+};
+
+export default class Editor extends Component<Props> {
+
+  editor: ?HTMLDivElement;
+  cm: any;
+  timeout: any;
+
+  componentDidMount(): void {
     const { onChange, value } = this.props
 
     this.cm = CodeMirror(this.editor, {
@@ -18,13 +30,13 @@ export default class Editor extends Component {
       theme: 'react',
       keyMap: 'sublime',
       viewportMargin: Infinity,
-      lineNumbers: false,
+      lineNumbers: true,
       dragDrop: false
-    });
+    })
 
     this.cm.setValue(value)
 
-    this.cm.on('changes', cm => {
+    this.cm.on('changes', (cm: any) => {
       if (onChange) {
         clearTimeout(this.timeout);
 
@@ -35,12 +47,9 @@ export default class Editor extends Component {
     })
   }
 
-  render() {
-    return <div className="editor" ref={ref => (this.editor = ref)} />
+  render(): Node {
+    return <div className="editor" ref={(div: ?HTMLDivElement) => (this.editor = div)} />
   }
 }
 
-Editor.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.string
-}
+

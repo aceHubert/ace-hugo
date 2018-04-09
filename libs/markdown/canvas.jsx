@@ -1,37 +1,58 @@
-import React from 'react'
+/* @flow */
+
+import React, { Component } from 'react'
+import type { Element, Node } from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 import marked from 'marked'
 import { transform } from 'babel-standalone'
-
+   
 import Editor from '../editor'
 
-export default class Canvas extends React.Component {
-  constructor(props) {
-    super(props)
+type Props ={
+  locale: Object,
+  name: string,
+  children: string
+};
 
-    this.playerId = `${parseInt(Math.random() * 1e9).toString(36)}`
-    this.document = this.props.children.match(/([^]*)\n?(```[^]+```)/)
-    this.description = marked(this.document[1])
-    this.source = this.document[2].match(/```(.*)\n([^]+)```/)
+type State ={
+  showBlock: boolean
+};
 
-    this.state = {
-      showBlock: false
-    }
+export default class Canvas extends Component<Props,State> {
+
+  static defaultProps={
+    locale:{}
   }
 
-  componentDidMount() {
+  state= {
+    showBlock: false
+  }
+
+  playerId: any = `${parseInt(Math.random() * 1e9).toString(36)}`;
+  document: ?Array<any>;
+  description: any;
+  source: any;
+
+  constructor(props: Props) {
+    super(props)
+
+    this.document = props.children.match(/([^]*)\n?(```[^]+```)/)
+    this.document && this.document.length>=2 &&( this.description = marked(this.document[1]))
+    this.document && this.document.length>=3 &&(this.source = this.document[2].match(/```(.*)\n([^]+)```/))    
+  }
+
+  componentDidMount(): void {
     this.renderSource(this.source[2])
   }
 
-  blockControl() {
+  blockControl(): void {
     this.setState({
       showBlock: !this.state.showBlock
     })
   }
 
-  renderSource(value) {
-    import('../../src').then(Element => {
+  renderSource(value: any): void {
+    import('../../src').then((Element: Element<any>) => {
       const args = ['context', 'React', 'ReactDOM']
       const argv = [this, React, ReactDOM]
 
@@ -44,7 +65,7 @@ export default class Canvas extends React.Component {
         args,
         argv
       }
-    }).then(({ args, argv }) => {
+    }).then(({ args, argv }: { args: any,argv: Array<any>}) => {
       const code = transform(`
         class Demo extends React.Component {
           ${value}
@@ -57,17 +78,17 @@ export default class Canvas extends React.Component {
 
       args.push(code)
 
-      new Function(...args).apply(null, argv)
+      new Function(...args).apply(this, argv)
 
       this.source[2] = value
-    }).catch((err) => {
+    }).catch((err: any) => {
       if (process.env.NODE_ENV !== 'production') {
         throw err;
       }
     })
   }
 
-  render() {
+  render(): Node {
     return (
       <div className={`demo-block demo-box demo-${this.props.name}`}>
         <div className="source" id={this.playerId} />
@@ -85,7 +106,7 @@ export default class Canvas extends React.Component {
               }
               <Editor
                 value={this.source[2]}
-                onChange={code => this.renderSource(code)}
+                onChange={(code: any) => this.renderSource(code)}
               />
             </div>
           )
@@ -106,12 +127,4 @@ export default class Canvas extends React.Component {
       </div>
     )
   }
-}
-
-Canvas.propTypes = {
-  locale: PropTypes.object
-}
-
-Canvas.defaultProps = {
-  locale: {}
 }

@@ -1,31 +1,39 @@
-import React from 'react';
+/* @flow */
+
+import React, { Component } from 'react';
+import type { Node } from 'react'
 import ReactDOM from 'react-dom';
 import marked from 'marked';
 import prism from 'prismjs';
 
 import Canvas from './canvas';
 
-export default class Markdown extends React.Component {
-  constructor(props) {
+export default class Markdown extends Component<{}> {
+
+  components: any;
+  renderer: any;
+  document: any;
+
+  constructor(props: any) {
     super(props);
 
     this.components = new Map;
 
     this.renderer = new marked.Renderer();
-    this.renderer.table = (header, body) => {
+    this.renderer.table = (header: any, body: any) => {
       return `<table class="grid"><thead>${header}</thead><tbody>${body}</tbody></table>`;
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.renderDOM();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     this.renderDOM();
   }
 
-  renderDOM() {
+  renderDOM(): void {
     for (const [id, component] of this.components) {
       const div = document.getElementById(id);
 
@@ -36,13 +44,13 @@ export default class Markdown extends React.Component {
     prism.highlightAll();
   }
 
-  render() {
+  render(): Node {
     const document = this.document(localStorage.getItem('ELEMENT_LANGUAGE') || 'zh-CN');
 
     if (typeof document === 'string') {
       this.components.clear();
 
-      const html = marked(document.replace(/:::\s?demo\s?([^]+?):::/g, (match, p1, offset) => {
+      const html = marked(document.replace(/:::\s?demo\s?([^]+?):::/g, (match: any, p1: any, offset: number) => {
         const id = offset.toString(36);
 
         this.components.set(id, React.createElement(Canvas, Object.assign({

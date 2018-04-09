@@ -1,8 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+/* @flow */
 
-export default class View extends Component {
-  render() {
+import React, { Component } from 'react';
+import type { Element, Node } from 'react'
+
+type Props ={
+  show?: boolean,
+  children: Element<any>
+};
+
+export default class View extends Component<Props> {
+
+  /* eslint-enable */
+  static _typeName='View'
+
+  render(): Node {
     const style = this.props.hasOwnProperty('show') && !this.props.show && {
       display: 'none'
     };
@@ -12,11 +23,3 @@ export default class View extends Component {
     });
   }
 }
-
-/* eslint-disable */
-View.propTypes = {
-  show: PropTypes.any,
-};
-/* eslint-enable */
-
-View._typeName = 'View';

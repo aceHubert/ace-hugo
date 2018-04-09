@@ -1,57 +1,104 @@
+/* @flow */
+
 import React from "react";
-import {Component, PropTypes} from '../../libs';
+import type { Element, Node } from "react";
+import {Component} from '../../libs';
 import calcTextareaHeight from './calcTextareaHeight'
 
-export default class Input extends Component { 
+type Props ={
+   // base
+   type: string,
+   colorType: string,
+   icon: Element<any> | string,
+   iconPre: boolean,
+   disabled: boolean,
+   name: string,
+   placeholder: string,
+   readOnly: boolean,
+   autoFocus: boolean,
+   maxLength: number,
+   minLength: number,
+   defaultValue: any,
+   value: any,
+   autoComplete: string,
+ 
+   // type=='input'
+   prepend: Node,
+   append: Node,
+ 
+   // type=='textarea'
+   autosize: boolean | Object ,
+   rows: number,
+   resize: 'none' | 'both' | 'horizontal' | 'vertical',
+ 
+   // event
+   onFocus: Function,
+   onBlur: Function,
+   onChange: Function,
+   onIconClick: Function
+};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      textareaStyle: { resize: props.resize },
-      focus: false
-    }
+type State ={
+  textareaStyle: {resize: boolean | Object},
+  focus: boolean;
+};
+
+export default class Input extends Component<Props,State> { 
+
+  static defaultProps = {
+    type: 'text',
+    autosize: false,
+    rows: 2,
+    autoComplete: 'off',
+    iconPre:false
   }
 
-  componentDidMount() {
+  state = {
+    textareaStyle: { resize: this.props.resize },
+    focus: false
+  }
+
+  componentDidMount(): void {
     this.resizeTextarea();
   }
 
-  fixControlledValue =(value)=> {
+  fixControlledValue =(value: any): any=> {
     if(typeof value === 'undefined' || value === null) {
       return '';
     }
     return value;
   }
 
-  handleChange=(e)=>{
-    const {onChange} = this.props;
+  handleChange=(e: SyntheticEvent<HTMLInputElement>): void=>{
+    (e.currentTarget: HTMLInputElement);
+    const {onChange} = this.props;    
     if (onChange) 
-      onChange(e.target.value);
+      onChange(e.currentTarget.value);
     this.resizeTextarea();
   }
 
-  handleFocus=()=> {
+  handleFocus=(e: SyntheticEvent<HTMLInputElement>): void=> {
     const {onFocus} = this.props;
     this.setState({focus: true});
     if (onFocus) 
       onFocus(e)
   }
 
-  handleBlur=(e)=> {
+  handleBlur=(e: SyntheticEvent<HTMLInputElement>): void=> {
     const {onBlur} = this.props;
     this.setState({focus: false});
     if (onBlur) 
       onBlur(e)
   }
 
-  handleIconClick=()=> {
+  handleIconClick=(): void=> {
     const {onIconClick} = this.props;
     if (onIconClick) {
       onIconClick()
     }
   }
 
-  resizeTextarea=()=> {
+  resizeTextarea=(): void=> {
     const { autosize, type } = this.props;
 
     if (!autosize || type !== 'textarea') {
@@ -75,10 +122,7 @@ export default class Input extends Component {
       icon,
       iconPre,
       autoComplete,
-      validating,
       rows,
-      onMouseEnter,
-      onMouseLeave,
       ...otherProps
     } = this.props;
 
@@ -134,43 +178,3 @@ export default class Input extends Component {
   }
 }
 
-Input.propTypes = {
-  // base
-  type: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  iconPre:PropTypes.bool,
-  disabled: PropTypes.bool,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  readOnly: PropTypes.bool,
-  autoFocus: PropTypes.bool,
-  maxLength: PropTypes.number,
-  minLength: PropTypes.number,
-  defaultValue: PropTypes.any,
-  value: PropTypes.any,
-  autoComplete: PropTypes.string,
-
-  // type=='input'
-  prepend: PropTypes.node,
-  append: PropTypes.node,
-
-  // type=='textarea'
-  autosize: PropTypes.oneOfType([ PropTypes.bool, PropTypes.object ]),
-  rows: PropTypes.number,
-  resize: PropTypes.oneOf(['none', 'both', 'horizontal', 'vertical']),
-
-  // event
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  onIconClick: PropTypes.func
-}
-
-
-Input.defaultProps = {
-  type: 'text',
-  autosize: false,
-  rows: 2,
-  autoComplete: 'off',
-  iconPre:false
-}
