@@ -7,7 +7,6 @@ import CodeMirror from 'codemirror'
 import 'codemirror/mode/jsx/jsx'
 import 'codemirror/keymap/sublime'
 import 'codemirror/addon/comment/comment'
-
 import 'codemirror/lib/codemirror.css'
 import './style.scss'
 

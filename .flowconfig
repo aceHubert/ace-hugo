@@ -1,11 +1,14 @@
 [ignore]
-.*/tests/.*
-.*/build/.*
-.*/dist/.*
+.*/node_modules/.*
+./build/.*
+./test/.*
+./dist/.*
 
 [include]
+.*/node_modules/codemirror/.*
 
 [libs]
+flow-typed
 
 [options]
 esproposal.class_static_fields=enable
@@ -15,5 +18,4 @@ module.file_ext=.jsx
 module.file_ext=.json
 module.file_ext=.css
 module.file_ext=.scss
-module.name_mapper.extension='css' -> 'empty/object'
-module.name_mapper.extension='scss' -> 'empty/object'
+module.name_mapper='.*\(.s?css\)' -> 'css-module-flow'

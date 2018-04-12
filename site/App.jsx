@@ -103,7 +103,7 @@ export default class App extends React.Component {
         <header className="header">
           <div className="container">
             <h1>
-              <img src={require("./assets/logo@0,25x.png")} alt="ACEHUGO"/>
+              <img src={require("./assets/logo@0,25x.png")} alt="ACEHUGO" />
             </h1>
             <ul className="nav">
               {/* <li className="nav-item">
