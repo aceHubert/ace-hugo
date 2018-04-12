@@ -12,7 +12,9 @@
     "jest": "jest",
     "flow": "flow check",
     "lint": "eslint src libs site --quiet",
-    "build": "node build/site/build.js"
+    "build": "node build/site/build.js",
+    "prepublish": "./build/scripts/prepare.sh",
+    "postpublish": "./build/scripts/release.sh"
   },
   "repository": {
     "type": "git",
