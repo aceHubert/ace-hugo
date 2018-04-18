@@ -47,6 +47,24 @@ render() {
 ```
 :::
 
+### Ripple
+单击背景添加波纹动画
+
+::: demo 通过`ripple`设置组件单击波纹动画
+```js
+render() {
+  return <div className="el-button-block">
+    <Button ripple>Primary</Button>
+    <Button type="primary" ripple>Primary</Button>
+    <Button type="succes" ripple>Succes</Button>
+    <Button type="info" ripple>Info</Button>
+    <Button type="warning" ripple>Warning</Button>
+    <Button type="danger" ripple>Danger</Button>
+  </div>
+}
+```
+:::
+
 ### 带图标的按钮
 使用图标显示更明确的意义，或减少空间
 

@@ -9,7 +9,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 const basePath = path.resolve(__dirname, '../../');
 
-process.env.NODE_ENV ='production'
+process.env.NODE_ENV = 'production'
 
 module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',

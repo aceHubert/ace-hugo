@@ -24,10 +24,6 @@ export default class Canvas extends Component<Props,State> {
     locale:{}
   }
 
-  state= {
-    showBlock: false
-  }
-
   playerId: any = `${parseInt(Math.random() * 1e9).toString(36)}`;
   document: ?Array<any>;
   description: any;
@@ -38,7 +34,11 @@ export default class Canvas extends Component<Props,State> {
 
     this.document = props.children.match(/([^]*)\n?(```[^]+```)/)
     this.document && this.document.length>=2 &&( this.description = marked(this.document[1]))
-    this.document && this.document.length>=3 &&(this.source = this.document[2].match(/```(.*)\n([^]+)```/))    
+    this.document && this.document.length>=3 &&(this.source = this.document[2].match(/```(.*)\n([^]+)```/))   
+    
+    this.state= {
+      showBlock: false
+    }
   }
 
   componentDidMount(): void {

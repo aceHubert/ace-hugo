@@ -2,4 +2,11 @@
     .el-button {
         margin-right: 10px;
     }
+
+    .el-ripple-button{
+        margin-right: 10px;
+        .el-button{
+            margin-right: 0;
+        }
+    }
 }

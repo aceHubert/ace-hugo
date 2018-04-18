@@ -4,77 +4,71 @@
     display: inline-block;
     position: relative;
     font-size: 14px;
-}
-
-.el-input {
-    &--primary &__inner {
-        border-color: $color-primary;
-    }
-    &--primary:before,
-    &--primary:after {
-        border-color: darken($color-primary, 5%) !important;
-    }
-    &--succes &__inner {
-        border-color: $color-succes;
-    }
-    &--succes:before,
-    &--succes:after {
-        border-color: darken($color-succes, 5%) !important;
-    }
-    &--info &__inner {
-        border-color: $color-info;
-    }
-    &--info:before,
-    &--info:after {
-        border-color: darken($color-info, 5%) !important;
-    }
-    &--warning &__inner {
-        border-color: $color-warning;
-    }
-    &--warning:before,
-    &--warning:after {
-        border-color: darken($color-warning, 5%) !important;
-    }
-    &--danger &__inner {
-        border-color: $color-danger;
-    }
-    &--danger:before,
-    &--danger:after {
-        border-color: darken($color-danger, 5%) !important;
-    }
-    &:before,
-    &:after {
-        content: '';
-        width: 0;
-        height: 0;
+    .focus-border {
         box-sizing: border-box;
         position: absolute;
         opacity: 0;
+        border-width: 0;
+        border-style: solid;
+        border-color: $color-primary;
+        z-index: 1;
+        &.border-1 {
+            width: 100%;
+            border-top-width: 2px;
+            left: 0;
+            top: 0;
+        }
+        &.border-2 {
+            width: 100%;
+            border-top-width: 2px;
+            left: 0;
+            bottom: 0;
+        }
+        &.border-3 {
+            height: 100%;
+            border-left-width: 2px;
+            left: 0;
+            top: 0;
+        }
+        &.border-4 {
+            height: 100%;
+            border-left-width: 2px;
+            right: 0;
+            top: 0;
+        }
     }
-    &:before {
-        border-top: 2px solid $color-primary;
-        border-right: 2px solid $color-primary;
-        left: 0;
-        top: 0;
+    &--focus .focus-border {
+        opacity: 1;
+        transition: all .5s;
     }
-    &:after {
-        border-bottom: 2px solid $color-primary;
-        border-left: 2px solid $color-primary;
-        right: 0;
-        bottom: 0;
+}
+
+.el-input {
+    &--primary &__inner,
+    &--primary .focus-border {
+        border-color: $color-primary;
     }
-    &--focus:before {
-        animation: el-input__border-animate .2s forwards;
+    &--succes &__inner,
+    &--succes .focus-border {
+        border-color: $color-succes;
     }
-    &--focus:after {
-        animation: el-input__border-animate .2s forwards;
-        animation-delay: .2s;
+    &--info &__inner,
+    &--info .focus-border {
+        border-color: $color-info;
+    }
+    &--warning &__inner,
+    &--warning .focus-border {
+        border-color: $color-warning;
+    }
+    &--danger &__inner,
+    &--danger .focus-border {
+        border-color: $color-danger;
     }
     &__inner {
         padding: 3px 10px;
         width: 100%;
         height: 32px;
-        height:2rem;
+        height: 2rem;
         background-color: #fff;
         background-image: none;
         border: 1px solid #CCC;
@@ -83,14 +77,14 @@
         outline: 0;
     }
     &--disabled &__inner {
-        color:$gray-light;
+        color: $gray-light;
         background-color: $gray-lighter;
         opacity: .8;
         cursor: not-allowed;
     }
     &__icon {
         width: 35px;
-        width:2.188rem;
+        width: 2.188rem;
         height: 100%;
         color: $gray-light;
         text-align: center;
@@ -146,6 +140,14 @@
         vertical-align: middle;
         display: table-cell;
     }
+    &--small &__inner {
+        padding:2px 5px;
+        height: 24px;
+    }
+    &--large &__inner {
+        padding:6px 12px;
+        height: 38px;
+    }
 }
 
 .el-textarea {
@@ -158,32 +160,5 @@
         display: block;
         box-sizing: border-box;
         outline: 0;
-    }
-    &--focus:before {
-        content: '';
-        width: 100%;
-        height: 100%;
-        border: 2px solid $color-primary;
-        box-sizing: border-box;
-        position: absolute;
-        transition: border .3s ease-out;
-    }
-}
-
-@keyframes el-input__border-animate {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-    }
-    75% {
-        width: 100%;
-        height: 0;
-        opacity: 1;
-    }
-    100% {
-        width: 100%;
-        height: 100%;
-        opacity: 1;
     }
 }

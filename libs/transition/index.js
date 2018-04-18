@@ -20,10 +20,6 @@ type State ={
 
 export default class Transition extends Component<Props,State> {
 
-  state = {
-    children: this.props.children && this.enhanceChildren(this.props.children)
-  }
-
   didEnter: any;
   didLeave: any;
   el: any;
@@ -34,6 +30,9 @@ export default class Transition extends Component<Props,State> {
 
     this.didEnter = this.didEnter.bind(this);
     this.didLeave = this.didLeave.bind(this);
+    this.state = {
+      children: props.children && this.enhanceChildren(props.children)
+    }
   }
 
   componentWillReceiveProps(nextProps: any): void {

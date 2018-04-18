@@ -7,7 +7,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 const basePath = path.resolve(__dirname, '../../')
 
-process.env.NODE_ENV ='development'
+process.env.NODE_ENV = 'development'
 
 module.exports=merge(baseWebpackConfig, {
   devtool: 'eval',
@@ -25,7 +25,10 @@ module.exports=merge(baseWebpackConfig, {
       sourceMap:true
     })
   },
-  plugins: [
+  plugins: [    
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
     new HtmlWebpackPlugin({
       filename:'index.html',
       template: './site/index.html',      

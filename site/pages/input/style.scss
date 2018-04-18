@@ -19,7 +19,13 @@
     }
 }
 
-.demo-input-group-block{
+.demo-input-inline {
+    .el-input +.el-input {
+        margin-left: 20px;
+    }
+}
+
+.demo-input-group-block {
     .el-input {
         &+.el-input {
             margin-top: 20px;

@@ -23,6 +23,7 @@ type Props ={
    autoComplete: string,
  
    // type=='input'
+   size: null | 'small' | 'large',
    prepend: Node,
    append: Node,
  
@@ -53,10 +54,15 @@ export default class Input extends Component<Props,State> {
     iconPre:false
   }
 
-  state = {
-    textareaStyle: { resize: this.props.resize },
-    focus: false
+  constructor(props: Props){
+    super(props)
+
+    this.state = {
+      textareaStyle: { resize: this.props.resize },
+      focus: false
+    }
   }
+
 
   componentDidMount(): void {
     this.resizeTextarea();
@@ -119,6 +125,7 @@ export default class Input extends Component<Props,State> {
       colorType,
       prepend,
       append,
+      size,
       icon,
       iconPre,
       autoComplete,
@@ -136,6 +143,7 @@ export default class Input extends Component<Props,State> {
       , colorType && `${rootclass}--${colorType}`
       , this.state.focus && `${rootclass}--focus`
       , this.props.disabled && `${rootclass}--disabled`
+      , size && `${rootclass}--${size}`
       , (prepend || append) && `${rootclass}-group`); 
 
       delete otherProps.resize;
@@ -154,12 +162,16 @@ export default class Input extends Component<Props,State> {
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
-          ></textarea>
+            ></textarea>     
+          <s className="focus-border border-1"></s>
+          <s className="focus-border border-2"></s>
+          <s className="focus-border border-3"></s>
+          <s className="focus-border border-4"></s>      
         </div>
       )
     }else{
       return (
-        <div style={this.style()} className={this.className(classname)}>
+        <div style={this.style()} className={this.className(classname)}>         
           { prepend && <div className="el-input-group__prepend">{prepend}</div> }
           { typeof icon === 'string' ? <i className={this.classNames('el-input__icon',iconPre&&'el-input__icon--pre',`el-icon-${icon}`)} onClick={this.handleIconClick.bind(this)}>{prepend}</i> : icon }
           <input {...otherProps}
@@ -171,7 +183,11 @@ export default class Input extends Component<Props,State> {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             />
-          { append && <div className="el-input-group__append">{append}</div> }  
+          { append && <div className="el-input-group__append">{append}</div> }   
+          <s className="focus-border border-1"></s>
+          <s className="focus-border border-2"></s>
+          <s className="focus-border border-3"></s>
+          <s className="focus-border border-4"></s> 
         </div>
       )
     }

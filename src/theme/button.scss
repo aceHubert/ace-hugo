@@ -8,6 +8,7 @@
     line-height: 1.17;
     border: none;
     display: inline-block;
+    outline: none;
     cursor: pointer;
     &:hover {
         background-color: darken($gray-lighter, 10%);

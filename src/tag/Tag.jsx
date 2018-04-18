@@ -7,7 +7,7 @@ type Props ={
   closable: boolean,
   type: string,
   color: string,
-  onClose: Function
+  onClose?: Function
 };
 
 type State ={
@@ -16,8 +16,17 @@ type State ={
 
 export default class Tag extends Component<Props,State> {
 
-  state={
-    visible:true
+  static defaultProps={
+    closable: false
+  }
+
+  constructor(props: Props)
+  {
+    super(props)
+
+    this.state={
+      visible:true
+    }
   }
 
   handleClose =(): void=>{

@@ -42,6 +42,23 @@ render() {
 ```
 :::
 
+### 尺寸
+使用不同尺寸来布局表单
+
+::: demo 通过 `size` 属性设置组件大小
+```js
+render() {
+  return (
+  <div className="demo-input-inline">
+    <Input size="small" placeholder="请输入内容" />
+    <Input placeholder="请输入内容" />
+    <Input size="large" placeholder="请输入内容" />
+  </div> 
+  )
+}
+```
+:::
+
 ### 带Icon输入框
 通过图标显示输入框的含义
 

@@ -2,6 +2,7 @@
 
 import React from "react";
 import {Component} from '../../libs';
+import Ripple from '../ripple'
 
 type Props ={
   type: string,
@@ -11,6 +12,7 @@ type Props ={
   nativeType: string,
   loading: boolean,
   disabled: boolean,
+  ripple: boolean,
   onClick: Function
 };
 
@@ -20,7 +22,8 @@ export default class Button extends Component<Props> {
     nativeType:'button',
     iconPos:false,
     loading:false,
-    disabled:false
+    disabled:false,
+    ripple:false,
   };
   
   handleClick=(e: SyntheticEvent<HTMLButtonElement>)=>{
@@ -30,23 +33,33 @@ export default class Button extends Component<Props> {
     }
   }
   render(){
-    const{type,size,icon,iconPos,nativeType,loading,disabled} = this.props;
+    const{type,size,icon,iconPos,nativeType,loading,disabled,ripple} = this.props;
 
-    return (
+    const button = (
       <button style={this.style()} 
         className={this.className('el-button', type&&`el-button--${type}`,size&&`el-button--${size}`,{
-            'is-disabled':disabled,
-            'is-loading':loading
-          })}
+              'is-disabled':disabled,
+              'is-loading':loading
+            })}
         type={nativeType}
         disabled={disabled}
         onClick={this.handleClick}
-        >
+          >
         {loading&&<i className="el-button__icon el-icon-loading"></i>}  
         {icon&&!loading&&<i className={this.classNames('el-button__icon',iconPos&&'el-button__icon--pos', `el-icon-${icon}`)}></i>}  
         {this.props.children &&<span>{this.props.children}</span>}
       </button>
     )
-  }
+
+   
+    if(ripple)
+      return (
+        <Ripple className="el-ripple-button">
+          {button}
+        </Ripple>
+      )
+    else
+      return button
+    }
 }
 

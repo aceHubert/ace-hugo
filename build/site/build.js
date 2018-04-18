@@ -8,6 +8,8 @@ const WebpackConfig = require('./webpack.prod.conf.js')
 var spinner = ora('building for production...')
 spinner.start()
 
+console.log(JSON.stringify(WebpackConfig))
+
 rm(WebpackConfig.output.path,err=>{
   if(err) throw err
   webpack(WebpackConfig, (err, stats)=> {
