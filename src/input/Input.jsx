@@ -63,11 +63,25 @@ export default class Input extends Component<Props,State> {
     }
   }
 
-
   componentDidMount(): void {
     this.resizeTextarea();
   }
 
+  /* <Instance Methods */
+
+  focus(): void {
+    setTimeout(() => {
+      (this.refs.input || this.refs.textarea).focus();
+    });
+  }
+  
+  blur(): void {
+    setTimeout(() => {
+      (this.refs.input || this.refs.textarea).blur();
+    });
+  }
+  
+  /* Instance Methods> */
   fixControlledValue =(value: any): any=> {
     if(typeof value === 'undefined' || value === null) {
       return '';

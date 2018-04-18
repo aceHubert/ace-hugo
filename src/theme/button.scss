@@ -1,6 +1,6 @@
 .el-button {
-    padding: 8px 10px;
-    padding: .5rem .625rem;
+    padding: 8px 12px;
+    padding: .5rem .75rem;
     color: $gray;
     background-color: $gray-lighter;
     background-image: none;
@@ -8,7 +8,7 @@
     line-height: 1.17;
     border: none;
     display: inline-block;
-    outline: none;
+    outline: 0;
     cursor: pointer;
     &:hover {
         background-color: darken($gray-lighter, 10%);
@@ -56,20 +56,20 @@
             background-color: darken( $color-danger, 10%);
         }
     }
-    &--large{        
-        padding: 9.504px 12px;
-        padding: .594rem .75rem;
-        font-size: 16px;
-        font-size: 1.125rem;
+    
+    &--small{
+        padding: 5px 9px;
+        padding: .313rem .563rem;
+        font-size: 12px;
     }
 
-    &--small{
-        padding: 5.504px 0px;
-        padding: .344rem .5rem;
-        font-size: 12px;
-        font-size: 0.857rem;
-        line-height: .85;
+    &--large{        
+        padding: 10px 14px;
+        padding: .625rem .875rem;
+        font-size: 16px;    
     }
+
+  
 
     &.is-disabled,
     &.is-disabled:hover,

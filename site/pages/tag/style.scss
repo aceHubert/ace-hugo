@@ -1,5 +1,10 @@
-.demo-tag-block {
+.demo-tag-inline {
     .el-tag {
         margin-right: 8px;
+    }
+
+    .input-new-tag{
+        width: 80px;
+        vertical-align: bottom;
     }
 }
