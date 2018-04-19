@@ -70,8 +70,8 @@ handleIconClick(e){
 
 render() {
   return <div className="demo-input-block">
-    <Input icon="time" 
-            placeholder="请选择时间" 
+    <Input icon="calendar" 
+            placeholder="请选择日期" 
             onIconClick={this.handleIconClick.bind(this)} />
     <Input icon="search" iconPre placeholder="搜索关键字" />
   </div>              

@@ -5,17 +5,17 @@ $gray-light:        lighten($gray,20%) !default;  //#9c9c9c
 $gray-dark:         darken($gray,15%) !default;   //#434343
 $gray-darker:       darken($gray,25%) !default;   //#292929
 $color-primary:   #00d8cc !default;
-$color_succes:    #91d100 !default;
-$color_info:      #56c5ff !default;
-$color_warning:   #f4b300 !default;
-$color_danger:    #ff2e12 !default;
+$color_succes:    #00BD62 !default;
+$color_info:      #0099BC !default;
+$color_warning:   #FF8C00 !default;
+$color_danger:    #DA3B01 !default;
 //## Settings for some of the most global styles.
 //** Background color for `<body>`.
-$body-bg-color: #fff !default;
+$body-bg-color: #FFF !default;
 //** Global text color on `<body>`.
-$text-color: $gray-dark !default;
+$text-color: #4C4A48 !default;
 //** Global textual link color.
-$link-color :#20a0ff !default;
+$link-color :#09DEFF !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color: darken($link-color, 15%) !default;
 //** Link hover decoration.

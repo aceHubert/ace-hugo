@@ -1,20 +1,22 @@
 {
-  "name": "ace-hugo",
-  "version": "0.1.0",
+  "name": "acehugo",
+  "version": "0.0.1",
   "description": "Hugo UI for react",
   "private": false,
   "author": "Hubert",
   "license": "MIT",
   "main": "dist/npm/es5/index.js",
+  "jsnext:main": "next.js",
   "scripts": {
     "start": "node build/site/dev-service.js",
-    "test": "flow check && BABEL_ENV=development jest",
+    "test": "flow && BABEL_ENV=development jest",
     "jest": "jest",
     "flow": "flow check",
     "lint": "eslint src libs site --quiet",
     "build": "node build/site/build.js",
-    "prepublish": "in-publish && source ./build/scripts/prepare.sh || not-in-publish",
-    "postpublish": "in-publish && source ./build/scripts/release.sh || not-in-publish"
+    "prepublish": "in-publish && ./build/scripts/prepare.sh || not-in-publish",
+    "postpublish": "in-publish && ./build/scripts/release.sh || not-in-publish",
+    "pre": "./build/scripts/prepare.sh"
   },
   "repository": {
     "type": "git",
