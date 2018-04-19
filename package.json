@@ -1,12 +1,19 @@
 {
   "name": "acehugo",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "Hugo UI for react",
   "private": false,
   "author": "Hubert",
   "license": "MIT",
   "main": "dist/npm/es5/index.js",
-  "jsnext:main": "next.js",
+  "jsnext:main": "next.es6.js",
+  "style": "dist/theme/index.css",
+  "files": [
+    "next.es6.js",
+    "dist",
+    "libs",
+    "src"
+  ],
   "scripts": {
     "start": "node build/site/dev-service.js",
     "test": "flow && BABEL_ENV=development jest",
@@ -15,7 +22,8 @@
     "lint": "eslint src libs site --quiet",
     "build": "node build/site/build.js",
     "prepubl¡sh": "./build/scripts/prepare.sh",
-    "_postpublish": "in-publish && ./build/scripts/release.sh || not-in-publish"
+    "postpublish": "./build/scripts/release.sh",
+    "csspublish": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -55,6 +63,10 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "flow-bin": "0.69.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-sass": "^4.0.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
     "marked": "^0.3.6",
