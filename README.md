@@ -18,9 +18,8 @@ import 'acehugo/dist/theme/index.css'
 ```
 or you want to change the main-theme (if you are using SCSS in your project).
 
+#### acehugo-variables.scss
 ```js
-acehugo-vars.scss
-
 /* change the main-theme */
 $color-primary:teal;
 
@@ -28,12 +27,15 @@ $color-primary:teal;
 $icon-path:'~acehugo/dist/theme/fonts'
 
 @import '~acehugo/src/theme/index.scss'
-
-App.jsx
-
-import 'acehugo-vars.scss'
 ```
->more variables, please check [here](http://hugo.acehubert.com/#en-US/variables)
+
+> more variables, please check [here](http://hugo.acehubert.com/#en-US/variables)
+
+#### App.jsx
+```js
+import 'acehugo-variables.scss'
+```
+
 
 
 ## Usage
