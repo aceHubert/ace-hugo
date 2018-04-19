@@ -15,4 +15,4 @@ yarn-debug.log*
 yarn-error.log*
 
 dist
-/next.js
+next.es6.js

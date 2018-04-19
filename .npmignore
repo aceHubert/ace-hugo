@@ -1,5 +1,8 @@
 build
-tests
+test
 site
 .*
+gulpfile.js
+yarn.lock
+*.log
 *.rplib
