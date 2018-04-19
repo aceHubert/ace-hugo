@@ -1,6 +1,6 @@
 {
   "name": "acehugo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Hugo UI for react",
   "private": false,
   "author": "Hubert",
@@ -14,7 +14,7 @@
     "flow": "flow check",
     "lint": "eslint src libs site --quiet",
     "build": "node build/site/build.js",
-    "prepublish": "in-publish && ./build/scripts/prepare.sh || not-in-publish",
+    "prepubl¡sh": "./build/scripts/prepare.sh",
     "postpublish": "in-publish && ./build/scripts/release.sh || not-in-publish"
   },
   "repository": {
