@@ -7,32 +7,31 @@ A react component framework project, **[Live Demo](https://hugo.acehubert.com")*
 ### Install
 
 ```bash
- npm install acehugo --save
-```
+npm install acehugo --save
 or
-```
- yarn add acehugo  
+yarn add acehugo  
 ```
 
 Before the building, you need a style theme.
 ```
-  import 'acehugo/dist/theme/index.css'
+import 'acehugo/dist/theme/index.css'
 ```
 or you want to change the main-theme (if you are using SCSS in your project).
-```
-  acehugo-vars.scss
 
-  /* change the main-theme */
-  $color-primary:teal;
+```js
+acehugo-vars.scss
 
-  /* change font folder(important) */
-  $icon-path:'~acehugo/dist/theme/fonts'
+/* change the main-theme */
+$color-primary:teal;
 
-  @import '~acehugo/src/theme/index.scss'
+/* change font folder(important) */
+$icon-path:'~acehugo/dist/theme/fonts'
 
-  App.jsx
+@import '~acehugo/src/theme/index.scss'
 
-  import 'acehugo-vars.scss'
+App.jsx
+
+import 'acehugo-vars.scss'
 ```
 >more variables, please check [here](http://hugo.acehubert.com/#en-US/variables)
 
@@ -41,7 +40,7 @@ or you want to change the main-theme (if you are using SCSS in your project).
 
 we recommend you writing code in modern javascript.
 
-```
+```js
 import {Button} from 'acehugo'
 ```
 
