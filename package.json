@@ -8,22 +8,16 @@
   "main": "dist/npm/es5/index.js",
   "jsnext:main": "next.es6.js",
   "style": "dist/theme/index.css",
-  "files": [
-    "next.es6.js",
-    "dist",
-    "libs",
-    "src"
-  ],
   "scripts": {
-    "start": "node build/site/dev-service.js",
+    "start": "node build/site/dev-service.js",    
+    "build": "node build/site/build.js",
     "test": "flow && BABEL_ENV=development jest",
     "jest": "jest",
     "flow": "flow check",
     "lint": "eslint src libs site --quiet",
-    "build": "node build/site/build.js",
+    "csspublish": "gulp build",
     "prepubl¡sh": "./build/scripts/prepare.sh",
-    "postpublish": "./build/scripts/release.sh",
-    "csspublish": "gulp build"
+    "postpublish": "./build/scripts/release.sh"   
   },
   "repository": {
     "type": "git",
