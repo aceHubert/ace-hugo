@@ -5,10 +5,10 @@ $gray-light:        lighten($gray,20%) !default;  //#9c9c9c
 $gray-dark:         darken($gray,15%) !default;   //#434343
 $gray-darker:       darken($gray,25%) !default;   //#292929
 $color-primary:   #00d8cc !default;
-$color_succes:    #00BD62 !default;
-$color_info:      #0099BC !default;
-$color_warning:   #FF8C00 !default;
-$color_danger:    #DA3B01 !default;
+$color_succes:    #6BBD39 !default;
+$color_info:      #39ADBD !default;
+$color_warning:   #EEAA5E !default;
+$color_danger:    #EE625E !default;
 //## Settings for some of the most global styles.
 //** Background color for `<body>`.
 $body-bg-color: #FFF !default;
@@ -58,3 +58,4 @@ $border-radius-small: 3px !default;
 
 //==Icon
 $icon-path:'./fonts' !default;
+
