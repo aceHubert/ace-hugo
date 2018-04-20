@@ -1,6 +1,6 @@
 ## Hugo React UI
 
-A react component framework project, **[Live Demo](https://hugo.acehubert.com)**
+A react component framework project, **[Live Demo](http://hugo.acehubert.com)**
 
 ## Getting Started
 

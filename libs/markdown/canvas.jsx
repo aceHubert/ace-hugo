@@ -32,13 +32,13 @@ export default class Canvas extends Component<Props,State> {
   constructor(props: Props) {
     super(props)
 
-    this.document = props.children.match(/([^]*)\n?(```[^]+```)/)
-    this.document && this.document.length>=2 &&( this.description = marked(this.document[1]))
-    this.document && this.document.length>=3 &&(this.source = this.document[2].match(/```(.*)\n([^]+)```/))   
-    
     this.state= {
       showBlock: false
     }
+
+    this.document = props.children.match(/([^]*)[\r\n|\n]?(```[^]+```)/)
+    this.document && this.document[1] &&( this.description = marked(this.document[1]))
+    this.document && this.document[2] &&(this.source = this.document[2].match(/```(.*)[\n|\r\n]([^]+)```/))   
   }
 
   componentDidMount(): void {
