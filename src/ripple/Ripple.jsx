@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from '../../libs';
-import {pointerX,pointerY,getOffset} from '../../libs/utils/dom'
+import {pointer, getOffset} from '../../libs/utils/dom'
 
 type Props ={
   during: number,
@@ -53,12 +53,11 @@ export default class Ripples extends Component<Props>{
     const {
       currentTarget:{ offsetWidth, offsetHeight }
     } = e
-    const pageX = pointerX(e)
-    const pageY = pointerY(e)
-    const offset = getOffset(e.currentTarget)
+    const mouseOffset = pointer(e)
+    const elOffset = getOffset(e.currentTarget)
 
-    const left = pageX - offset.left
-    const top = pageY - offset.top
+    const left = mouseOffset.left - elOffset.left
+    const top = mouseOffset.top - elOffset.top
     const size = Math.max(offsetWidth, offsetHeight)
 
     this.setState({

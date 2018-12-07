@@ -46,7 +46,7 @@ export default class Markdown extends Component<{}> {
 
   render(): Node {
     const document = this.document(localStorage.getItem('ACE_LANGUAGE') || 'zh-CN');
-
+  console.log(document)
     if (typeof document === 'string') {
       this.components.clear();
 

@@ -16,7 +16,7 @@ git fetch
 git checkout -t origin/gh-pages
 
 # remove all existed files in the repo, run the site build script
-rm *
+rm -r *
 yarn run build
 
 # commit and push to gh-pages
